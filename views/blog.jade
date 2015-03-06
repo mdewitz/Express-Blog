@@ -3,49 +3,47 @@ html
 head
   meta(charset="UTF-8")
   link(rel="stylesheet", href="/styles/styles.css")
-  title To Do
+  title Hooray
 body
-  //- h1 To Do
+  h1 Hooray
   div.all
     section.form_container
       form(action ="/blog", method = "POST" )
-        //- (action="/toDo", method="POST")
         fieldset
           div.title_container
-            label.main To-Do: 
             input( type = "text", name = "title", placeholder = "New to-do", size='0')
             button.send +
-          div.description_container
-            //- label Notes:
-            textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')
-            //- button.update(type="submit") Update
+          div.content_container
+            textarea( type = "text", name = "body", placeholder = "Notes" cols='20' rows='5')
     section.toDoList_container
       ul
         each item in blogs
           li.item
-            a(href='/blog/#{item._id}')
-              //- (href="#")
             div.image
               button.next(type="submit") <
               button.prev(type="submit") >
-            span.toDoItem!= item.title
-            span :
-            span &nbsp;
-            span.notes!= item.description
-          form(action="/blog/#{item._id}?_method=DELETE", method="post")
+            div.title
+              != item.title
+            div.content
+              != item.content
+            form(action ="/blog/#{item._id}", method = "get")
+              button.update(type="submit") Update
+            form(action="/blog/#{item._id}?_method=DELETE", method="post")
               button.delete(type="submit") X
-                  section.form_container
-            form.updating(action ="/blog/#{item._id}?_method=put", method = "POST" )
-              fieldset
-                div.update_hide
-                  div.update_title_container
-                    //- label Update: 
-                    input( type = "text", name = "title", placeholder = "Update to-do", size='0')
-                    button.update(type="submit") Update
-                   div.update_author_container
-                    //- label Update: 
-                    input( type = "text", name = "title", placeholder = "Update to-do", size='0')       
-                  div.update_description_container
-                    textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')
 script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
 script(src="/js/blog.js")
+            //- a(href='/blog/#{item._id}')
+              //- (href="#")
+          //-         section.form_container
+          //-   form.updating(action ="/blog/#{item._id}?_method=put", method = "POST" )
+          //-     fieldset
+          //-       div.update_hide
+          //-         div.update_title_container
+          //-           //- label Update: 
+          //-           input( type = "text", name = "title", placeholder = "Update to-do", size='0')
+          //-           button.update(type="submit") Update
+          //-          div.update_author_container
+          //-           //- label Update: 
+          //-           input( type = "text", name = "title", placeholder = "Update to-do", size='0')       
+          //-         div.update_description_container
+          //-           textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')

@@ -16,7 +16,7 @@ var Schema = mongoose.Schema;
 var blogSchema = new Schema ({
   author: String,
   title: {type:String, required: true},
-  body: String,
+  content: String,
 //   created_at: {type: Date}
 }); 
 
@@ -30,13 +30,13 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'jade');
 
-app.use(methodOverride(function(req, res){
-  if(req.body && typeof req.body === 'object' && '_method' in req.body){
-    var method = req.body._method;
-    delete req.body._method;
-    return method;
-  }
-}));
+// app.use(methodOverride(function(req, res){
+//   if(req.body && typeof req.body === 'object' && '_method' in req.body){
+//     var method = req.body._method;
+//     delete req.body._method;
+//     return method;
+//   }
+// }));
 
 //routes
 //get list.jade page
@@ -50,21 +50,21 @@ app.get('/', function (req, res){
   });
 });
 
-// get newtodo list.jade page
-app.get('/blog', function (req, res){
-  res.render('blog');
-});
+// // get newtodo list.jade page
+// app.get('/edit_blog', function (req, res){
+//   res.render('edit_blog');
+// });
 
-// get edit todo form page
+
+// get edit blog form page
 app.get('/blog/:id', function (req, res){
   var blog_id = req.params.id;
 
   Blog.findById(blog_id, function (err, blog){
-    res.render('blog', {
+    res.render('edit_blog', {
       blog : blog
     });
   });
-  
 });
 
 //post data
@@ -73,7 +73,7 @@ app.post('/blog', function (req, res){
   var newBlog = new Blog({
     author: req.body.author,
     title: req.body.title,
-    body: req.body.body,
+    content: req.body.content,
 //     is_done: false,
 //     created_at: new Date()
   });
@@ -85,13 +85,11 @@ app.post('/blog', function (req, res){
 });
 
 app.put('/blog/:id', function (req, res){
-  //prep data
   var blog_id = req.params.id;
   Blog.findById(blog_id, function(err, blogsFromDB){
-    blogsFromDB.author = req.body.author;
+    // blogsFromDB.author = req.body.author;
     blogsFromDB.title = req.body.title;
-    blogsFromDB.body = req.body.body;
-
+    blogsFromDB.content = req.body.content;
     blogsFromDB.save(function (err){
       if(err) throw err;
       res.redirect('/');
@@ -124,11 +122,11 @@ app.put('/blog/:id/complete', function (req, res){
 });
 
 // app.put('/blog/:id/incomplete', function (req, res){
-//   // var _id = req.params.id;
+// //   // var _id = req.params.id;
 //   console.log("update");
-//   ToDo.update({_id: req.params.id},
+//   Blog.update({_id: req.params.id},
 // //     {is_done : false}, 
-//      function (err, todo){
+//      function (err, blog){
 //       if (err) throw err;
 //       res.send("okay");
 //       // res.redirect('/'); //ajax can't do redirect
