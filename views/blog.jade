@@ -15,39 +15,37 @@ body
             label.main To-Do: 
             input( type = "text", name = "title", placeholder = "New to-do", size='0')
             button.send +
-          div.hide
-            div.eventDate_container
-              //- lable Date: 
-              input( type = "date", name = "eventDate")
-            div.alert_container
-              //- label Alert(s):
-              input( type ="number", placeholder="0", min="0", cols = "2")
-              span
-              select
-                option( value="no_alert") No alerts
-                option(value="days_before") day(s) before
-                option(value="hours_before") hour(s) before
-            div.status
-              input( type="hidden" name="is_done" value=false)
-            div.description_container
-              //- label Notes:
-              textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')
-              
-              button.update(type="submit") Update
+          div.description_container
+            //- label Notes:
+            textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')
+            //- button.update(type="submit") Update
     section.toDoList_container
       ul
         each item in blogs
           li.item
             a(href='/blog/#{item._id}')
               //- (href="#")
-            input.check(type="checkbox", name = "toDos", checked = false, data-todo-id="#{item._id}")
+            div.image
+              button.next(type="submit") <
+              button.prev(type="submit") >
             span.toDoItem!= item.title
             span :
             span &nbsp;
             span.notes!= item.description
-            form(action="/blog/#{item._id}?_method=DELETE", method="post")
+          form(action="/blog/#{item._id}?_method=DELETE", method="post")
               button.delete(type="submit") X
-
-        
+                  section.form_container
+            form.updating(action ="/blog/#{item._id}?_method=put", method = "POST" )
+              fieldset
+                div.update_hide
+                  div.update_title_container
+                    //- label Update: 
+                    input( type = "text", name = "title", placeholder = "Update to-do", size='0')
+                    button.update(type="submit") Update
+                   div.update_author_container
+                    //- label Update: 
+                    input( type = "text", name = "title", placeholder = "Update to-do", size='0')       
+                  div.update_description_container
+                    textarea( type = "text", name = "description", placeholder = "Notes" cols='20' rows='5')
 script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
 script(src="/js/blog.js")
