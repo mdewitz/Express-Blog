@@ -1,0 +1,22 @@
+doctype
+html(lang="en")
+head
+  //- link(href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css')
+  script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
+  script(type="text/javascript" src="/js/blog.js")
+  link(rel="stylesheet", href="/styles/_reset.css")
+  link(rel="stylesheet", href="/styles/styles.css") 
+  meta(charset="UTF-8")
+  title Document
+body
+  h1 Edit
+  section.form_container
+    form(action = "/blog/#{blogs._id}?_method=PUT", method = "POST")
+      fieldset
+        //- div.new
+        //-   input.author( type = "text", name = "author" value = blogs.author) 
+        div.new
+          input.title( type = "text", name = "title" value = blogs.title)  
+        div.new
+          input.content( type = "text", name = "content" value = blogs.content)  
+        button.submit update

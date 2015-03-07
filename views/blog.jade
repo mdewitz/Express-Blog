@@ -6,32 +6,40 @@ head
   title Hooray
 body
   h1 Hooray
-  div.all
+  div.new_post
     section.form_container
       form(action ="/blog", method = "POST" )
         fieldset
+          button.send Create Post
+          div.author_container
+            label(for="author_name") Created by:
+            input( type = "text", name = "author", placeholder = "Created By", size='0')
           div.title_container
-            input( type = "text", name = "title", placeholder = "New to-do", size='0')
-            button.send +
+            label(for="title") Title:
+            input( type = "text", name = "title", placeholder = "Title", size='0')
           div.content_container
-            textarea( type = "text", name = "body", placeholder = "Notes" cols='20' rows='5')
-    section.toDoList_container
-      ul
-        each item in blogs
-          li.item
-            div.image
-              button.next(type="submit") <
-              button.prev(type="submit") >
-            div.title
-              != item.title
-            div.content
-              != item.content
-            form(action ="/blog/#{item._id}", method = "get")
-              button.update(type="submit") Update
-            form(action="/blog/#{item._id}?_method=DELETE", method="post")
-              button.delete(type="submit") X
+            label(for="content") Content:
+            textarea( type = "text", name = "body", placeholder = "Content" cols='20' rows='5')
+  section.toDoList_container
+    ul
+      each item in blogs
+        li.item
+          div.post
+            button.next(type="submit") <
+            button.prev(type="submit") >
+            div.sneakPeek
+              div.author
+                != item.author
+              div.title
+                != item.title
+              div.content
+                != item.content
+              form(action ="/blog/#{item._id}", method = "get")
+                button.update(type="submit") Read Me
+              form(action="/blog/#{item._id}?_method=DELETE", method="post")
+                button.delete(type="submit") X
 script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
-script(src="/js/blog.js")
+script(src="/js/blogPost.js")
             //- a(href='/blog/#{item._id}')
               //- (href="#")
           //-         section.form_container

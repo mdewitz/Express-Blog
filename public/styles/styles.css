@@ -8,10 +8,26 @@
 h1{
   font-family: 'Lobster', cursive;
   font-style: italic;
-
-
+}
+.new_post{
+  display:none;
+}
+.post{
+  background-image: url('http://www.dailybunny.com/.a/6a00d8341bfd0953ef0148c793026c970c-pi');
+  height: 300px;
+  size: contain;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+  position: relative;
 }
 
+.sneakPeek{
+  background-color: rgba(92, 92, 92, .3);
+  height: 80px;
+  width: 100%;
+  position: absolute;
+  top: 220px;
+}
 .next, .prev{
   color: white;
   background-color: rgba(92, 92, 92, .3);
@@ -20,4 +36,33 @@ h1{
   width: 25px;
   /*height: 80px;*/
   margin: 5px;
+}
+
+label{
+  width: 100px;
+}
+
+input, textarea{
+  margin-top: 12px;
+}
+
+#slider{
+  width: 720px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slides{
+  display: block;
+  width: 600px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.slide{
+  float: left;
+  list-style-type: none;
+  width: 720px;
+  height: 400px;
 }
