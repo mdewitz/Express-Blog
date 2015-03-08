@@ -2,44 +2,137 @@ doctype
 html
 head
   meta(charset="UTF-8")
-  link(rel="stylesheet", href="/styles/styles.css")
+  link(rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css")
+  link(rel="stylesheet" href="/styles/_reset.css")
+  link(rel="stylesheet" href="/styles/styles.css")
   title Hooray
 body
   h1 Hooray
-  div.new_post
-    section.form_container
-      form(action ="/blog", method = "POST" )
-        fieldset
-          button.send Create Post
-          div.author_container
-            label(for="author_name") Created by:
-            input( type = "text", name = "author", placeholder = "Created By", size='0')
-          div.title_container
-            label(for="title") Title:
-            input( type = "text", name = "title", placeholder = "Title", size='0')
-          div.content_container
-            label(for="content") Content:
-            textarea( type = "text", name = "body", placeholder = "Content" cols='20' rows='5')
-  section.toDoList_container
+  form.blog_login(action='/login', method='post')
+    button.blog_login_button Sign in
+  section.blog_posts
     ul
       each item in blogs
         li.item
+          ul
+            div.slideshow
+              div
+                img(src='http://media.giphy.com/media/wnQCTCJivWuXu/giphy.gif')
+              div
+                img(src='http://media.giphy.com/media/yQanUKoywzYPe/giphy.gif')
+              div
+                img(src='http://media1.giphy.com/media/fq5yiYcnmColW/giphy.gif')
+              //- div
+              //-   img(src='../assets/image-4.jpg')
           div.post
-            button.next(type="submit") <
-            button.prev(type="submit") >
+            button.next <
+            button.prev >
             div.sneakPeek
-              div.author
+              div.blog_date
+                !=item.date
+              div.blog_author
                 != item.author
-              div.title
+              div.blog_title
                 != item.title
-              div.content
-                != item.content
-              form(action ="/blog/#{item._id}", method = "get")
-                button.update(type="submit") Read Me
-              form(action="/blog/#{item._id}?_method=DELETE", method="post")
-                button.delete(type="submit") X
-script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
-script(src="/js/blogPost.js")
+              div.blog_content
+                != item.description
+              form(action="/blog/#{item._id}", method="post")
+                  button.read_more(type="submit") Read More
+script(type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js") 
+script(src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js")
+script(type="text/javascript" src="js/blogPost.js")                  
+//- script(src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js")
+//- script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
+//- script(type="text/javascript" src="/js/blog.js")
+//- doctype
+//- html(lang="en")
+//- head
+//-   link(href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css')
+//-   script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
+//-   //- script(type="text/javascript" src="/js/blog.js")
+//-   link(rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css")
+//-   link(rel="stylesheet", href="/styles/_reset.css")
+//-   link(rel="stylesheet", href="/styles/styles.css") 
+//-   meta(charset="UTF-8")
+//-   title Login
+//- body
+//-   h1 Admin
+//-   div.new_post
+//-     section.form_create
+//-       form(action ="/blog", method = "POST" )
+//-         fieldset
+//-           button.create_post +
+//-           div.create_date
+//-             label(for="date") Date:
+//-             input(name = "date", value = new Date())
+//-           div.author_container
+//-             label(for="author_name") Author:
+//-             input( type = "text", name = "author", placeholder = "Created By")
+//-           div.create_title
+//-             label(for="title") Title:
+//-             input( type = "text", name = "title", placeholder = "Title")
+//-           div.create_content
+//-             label(for="content") Content:
+//-             textarea( type = "text", name = "body", placeholder = "Content" cols='55' rows='5')
+//-   section.view_posts
+//-     ul
+//-       each item in blogs
+//-         li.item
+//-           div.main_title
+//-             != item.title
+//-             //- div.hide
+//-             div.old_post
+//-               button.next(type="submit") <
+//-               button.prev(type="submit") >
+//-               div.sneakPeek
+//-                 div.date
+//-                   != item.date
+//-                 div.author
+//-                   != item.author
+//-                 div.title
+//-                   != item.title
+//-                 div.content
+//-                   != item.content
+//-                 form(action ="/blog/#{item._id}", method = "GET")
+//-                   button.update(type="submit") Update
+//-                 form(action="/blog/#{item._id}?_method=DELETE", method="post")
+//-                   button.delete(type="submit") X
+//-         //- section.form_container
+//-         //-   form(action = "/blog/admin/#{blogs._id}?_method=PUT", method = "POST") 
+//-         //-     div.title
+//-         //-       label(for="title") Title:
+//-         //-       input.title(type = "text", name = "title", placehoder ="title" value = blogs.title)
+//-         //-     div.date
+//-         //-       label(for="date") Date:
+//-         //-       input.date(type = "text", name = "date", placehoder ="date" value = new Date())
+//-         //-     div.author
+//-         //-       label(for="author") Author
+//-         //-       input.author(type = "text", name = "author", placehoder ="author" value = blogs.author)
+//-         //-     div.body
+//-         //-       lable(for="body") Content
+//-         //-       input.body(type = "text", name = "body", placehoder ="body" value = blogs.content)
+//-         //-     button.update(type="submit") Update
+//- script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
+//- script(src="/js/blogPost.js")
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>old stuff
+  //- div.new_post
+  //-   section.form_container
+  //-     form(action ="/blog", method = "POST" )
+  //-       fieldset
+  //-         button.send Create New Post
+  //-         div.author_container
+  //-           label(for="author_name") Created by:
+  //-           input( type = "text", name = "author", placeholder = "Created By", size='0')
+  //-         div.title_container
+  //-           label(for="title") Title:
+  //-           input( type = "text", name = "title", placeholder = "Title", size='0')
+  //-         div.content_container
+  //-           label(for="content") Content:
+  //-           textarea( type = "text", name = "body", placeholder = "Content" cols='20' rows='5')
+  //-                 button.update(type="submit") Update
+  //-               form(action="/blog/#{item._id}?_method=DELETE", method="post")
+  //-                 button.delete(type="submit") X
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
             //- a(href='/blog/#{item._id}')
               //- (href="#")
           //-         section.form_container

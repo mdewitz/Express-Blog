@@ -1,21 +1,32 @@
 //getting started with express, bodyParser 
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
 var methodOverride = require('method-override');
+var app = express();
+var mongoose = require('mongoose');
 var blog=require("./controllers/blog");
+var auth = require("./controllers/auth");
+// var admin=require("./controllers/admin");
 
 //db
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/blogtest');
+// mongoose.connect('mongodb://localhost/blogtest');
 
 //middleware
 app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(methodOverride('_method'));
 app.set('view engine', 'jade');
+app.use(auth);
 app.use('/blog', blog);
+// app.use('/users', users);
+
 
 app.get('/', blog.list);
 

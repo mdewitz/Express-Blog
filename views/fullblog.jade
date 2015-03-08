@@ -1,41 +1,42 @@
 doctype
 html(lang="en")
 head
-  link(rel="stylesheet", href="styles/_reset.css")
   link(rel="stylesheet", href="styles/styles.css")
+  link(rel="stylesheet", href="styles/_reset.css")
   meta(charset="UTF-8")
 body
-  div.background
-    div.logowrapper
-      div.logo Horray
-       div.picturewrapper
-        img(src='http://cdn.c.photoshelter.com/img-get/I0000iAuAcJVVu34/s/750/chinatown-san-francisco-17-casanf77640....')
-    section.form_container
-      form(action = "/blog/#{blogs._id}?_method=PUT", method = "POST")
-        fieldset
-          div.date
-            label(for="date") Date:
-            input.date(type = "text", name = "date", placehoder ="date" value = new Date())
-          div.title
-            label(for="title") Title:
-            input.title(type = "text", name = "title", placehoder ="title" value = blogs.title)
-          div.author
-            label(for="author") Author
-            input.author(type = "text", name = "author", placehoder ="author" value = blogs.author)
-          div.body
-            lable(for="body") Content
-            input.body(type = "text", name = "body", placehoder ="body" value = blogs.content)
-          button.update(type="submit") Update
-    div.footer
-      ul
-        li
-          a(href='/') back
-        li
-          a(href='/') next 
-
+  h1 Edit Post
+  //- div.background
+  //-   div.logowrapper
+  //-     div.logo Horray
+  //-      div.picturewrapper
+        //- img(src='http://cdn.c.photoshelter.com/img-get/I0000iAuAcJVVu34/s/750/chinatown-san-francisco-17-casanf77640....')
+  section.edit_posts
+    form(action = "/blog/#{blogs._id}?_method=PUT", method = "POST") 
+      fieldset
+        div.date_edit
+          label(for="date") Date:
+          input.date(type = "text", name = "date", placeholder ="date" value = new Date())
+        div.title_edit
+          label(for="title") Title:
+          input.title(type = "text", name = "title", placeholder ="title" value = blogs.title)
+        div.author_edit
+          label(for="author") Author
+          input.author(type = "text", name = "author", placeholder ="author" value = blogs.author)
+        div.body_edit
+          lable(for="body") Content
+          input.body(type = "text", name = "body", placeholder ="body" value = blogs.content cols='20' rows='5')
+        button.update(type="submit") Update
+    //- div.footer
+    //-   ul
+    //-     li
+    //-       a(href='/') back
+    //-     li
+    //-       a(href='/') next 
 script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
-script(type="text/javascript" src="js/blog.js")
+script(type="text/javascript" src="js/blogPost.js")
 
+//- form(action = "/blog/#{blogs._id}?_method=PUT", method = "POST")
 //- doctype
 //- html
 //- head

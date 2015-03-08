@@ -1,0 +1,29 @@
+doctype
+html(lang="en")
+head
+  script(type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js")
+  //- link(rel="stylesheet", href="/styles/_reset.css")
+  link(rel="stylesheet", href="/styles/styles.css") 
+  meta(charset="UTF-8")
+  title Login
+body
+  h1.login Login
+  section.login_form
+    form(action = "/login", method = "POST")
+      div.login_center
+        div.login_image
+        div.login_name
+          input.username(type="text" name="username" placeholder = "Username")
+        div.login_password
+          input.password(type = "password" name = "password" placeholder = "Password")
+        br
+        div
+          button.login_button Sign In
+  script(type="text/javascript" src="/js/blogPost.js")
+      //- fieldset
+        //- div.new
+        //-   input.author( type = "text", name = "author" value = blogs.author) 
+        //- div.new
+          //- input.content( type = "text", name = "content" value = blogs.content)  
+        //- button.submit update
+  //- link(href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css')
